@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sortable Datatable Example</title>
+    <link href="./dataTable.css" rel="stylesheet">
+</head>
+<body>
+<div id="testTable"></div>
+<script src="./DataTable.js"></script>
+</body>
+<script>
+
+    let columnDefs = [
+        {value: "ID", key: "id", width: "10"},
+        {value: "Name", key: "name", width: "45"},
+        {value: "E-mail", key: "email", width: "45", searchable: true}
+    ];
+    let options ={
+        columnDragHandle: "", // selector of handler (must be inside of th tag)
+        columnOnDragClass: "columnOnDrag",
+        rowOnDragClass: "rowOnDrag",
+        dragColumnSortable: true,
+        dragRowSortable: true,
+        sortable: true,
+        sortableUpIcon: "./sort-up.svg",
+        sortableDownIcon: "./sort-down.svg",
+        onIndexChange: function (oldIndex, newIndex, type, rowElement) { // type: row or column
+            // console.log(oldIndex, newIndex, type, rowElement)
+        }
+    };
+    let rowDatas = [
+        {id:1,name:"baris",email:"bariskaracaa@gmail.com"},
+        {id:2,name:"alpkan",email:"alpkancicek@gmail.com"},
+        {id:3,name:"kenan",email:"kenankurt@gmail.com"},
+        {id:4,name:"tanzer",email:"tanzeratay@gmail.com"},
+        {id:5,name:"serkan",email:"serkanturkeli@gmail.com"}
+    ];
+    let dataTable1 = new DataTable("#testTable", columnDefs, rowDatas, options).create();
+
+    dataTable1.search("an");
+    dataTable1.addRow({id:5,name:"serkan2",email:"serkanturkeli2@gmail.com"});
+
+</script>
+</html>
